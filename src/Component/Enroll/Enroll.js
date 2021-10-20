@@ -486,7 +486,7 @@ function Enroll(){
             </>
         ) : (
             <div className="container-confirm">
-                <div className="text-confirm"><span>ลงทะเบียนเรียบร้อยเเล้ว</span></div>
+                <div className="text-confirm"><h1>ลงทะเบียนเรียบร้อยเเล้ว</h1></div>
                 <div className="re-register" onClick={() => Reregister()}><span>เพิ่ม-เปลี่ยน-ถอน</span></div>
             </div>
         ) }

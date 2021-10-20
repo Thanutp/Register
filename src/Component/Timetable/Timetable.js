@@ -2,6 +2,7 @@ import './Timetable.css';
 import { auth } from '../../Database/firebase';
 import firestore from '../../Database/firebase';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Timetable(){
     const Register = firestore.collection('Register');
@@ -48,7 +49,16 @@ function Timetable(){
                     </div>
                 </div>
             </div>
-        ) : null }
+        ) : (
+            <div className="container-text-timetable">
+                <div className="text-timetable">
+                    <h1>คลิกเพื่อลงทะเบียนเรียน</h1>
+                </div>
+                <Link to="/enroll" className="btn-backtoregister" >
+                    <span>ลงทะเบียนเรียน</span>
+                </Link>
+            </div>
+        ) }
         </>
     );
 }

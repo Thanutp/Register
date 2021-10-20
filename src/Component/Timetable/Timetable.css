@@ -27,7 +27,7 @@
 
 .text-table h1{
     font-size: 3.1rem;
-    color: #F0A500;
+    color: #CE1212;
 }
 
 .text-table span{
@@ -37,7 +37,7 @@
 
 .tablesub{
     margin-top: 1.5rem;
-    width: 65%;
+    width: 75%;
     height: fit-content;
     background: #D5D5D5;
     border-radius: 20px;
@@ -52,4 +52,53 @@
 .Subject{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding: .7rem;
+}
+
+.Id-sub, .Name-sub, .Time-sub, .Sec-sub, .Room-sub, .Teacher-sub{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-text-timetable{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text-timetable{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-timetable h1{
+    font-size: 2.4rem;
+    font-weight: 400;
+    padding: .6rem 2rem;
+    border-radius: 20px;
+    color: rgba(0, 0, 0, 0.534);
+    background: #CDD0CB;
+}
+
+.btn-backtoregister{
+    text-decoration: none;
+    margin-top: 1.5rem;
+    background: rgba(0, 155, 0, 0.822);
+    color: rgba(228, 228, 228, 0.822);;
+    padding: .7rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transform: scale(1);
+    transition: .4s;
+}
+
+.btn-backtoregister:hover{
+    background: rgb(1, 145, 1);
+    transform: scale(1.1);
 }

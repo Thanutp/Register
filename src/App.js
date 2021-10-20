@@ -5,6 +5,7 @@ import { useLocation, Redirect } from 'react-router-dom';
 import Register from './Component/Register/Register';
 import Home from './Component/Home/Home';
 import { useEffect, useState } from 'react';
+import './App.css';
 
 function App() {
   const location = useLocation();
@@ -50,6 +51,7 @@ function App() {
       auth.signOut().then(() =>{
         sessionStorage.removeItem('Auth')
         setUserLoginState(null)
+        window.location.href = '/';  
         console.log('Logout!!')
       })
     }
