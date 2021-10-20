@@ -54,7 +54,7 @@ function Timetable(){
                 <div className="text-timetable">
                     <h1>คลิกเพื่อลงทะเบียนเรียน</h1>
                 </div>
-                <Link to="/enroll" className="btn-backtoregister" >
+                <Link to="/enroll" className="btn-backtoregister">
                     <span>ลงทะเบียนเรียน</span>
                 </Link>
             </div>

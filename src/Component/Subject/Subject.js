@@ -1,6 +1,6 @@
-import './Profile.css'
+import './Subject.css'
 
-function Profile(){
+function Subject(){
     return(
         <div>
             asdad
@@ -8,4 +8,4 @@ function Profile(){
     )
 }
 
-export default Profile;
+export default Subject;

@@ -30,7 +30,7 @@ function Navbar({Logout}){
                 <div className="choose-navbar">
                     <Link to="/enroll" className="text-link">ลงทะเบียนเรียน</Link>
                     <Link to="/timetable" className="text-link">ตารางเรียน</Link>
-                    <Link to="/profile" className="text-link">ประวัติส่วนตัว</Link>
+                    <Link to="/subject" className="text-link">รายวิชา</Link>
                 </div>
                 <div className="user-navbar" onMouseOver={() => setLogout(true)} onMouseLeave={() => setLogout(false)}>
                     <div className="name-user"><span>{ user ? user.displayName : null }</span></div>

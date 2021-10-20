@@ -56,19 +56,7 @@ function Enroll(){
             })
         }
     },[sec])
-    
-    // useEffect(() =>{
-        // if(allSubject != ''){
-        //     allSubject.forEach((data) =>{
-        //         Userinsub.doc(data.Sec).collection('user').doc(data.Id).get().then((res) =>{
-        //             const num = res.data().NumofStu;
-        //             let allnum = [];
-        //             allnum = [...allnum, { Id : data.Id, Sec : sec, Num : num }];
-        //             setNumofStu(allnum);
-        //         })
-        //     })
-        // }
-    // }, [Renum])
+
 
     useEffect(() =>{
         auth.onAuthStateChanged((user) =>{

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Enroll from '../Component/Enroll/Enroll';
 import Timetable from '../Component/Timetable/Timetable';
-import Profile from '../Component/Profile/Profile';
+import Subject from '../Component/Subject/Subject';
 
 function Routes(){
     return(
@@ -12,8 +12,8 @@ function Routes(){
             <Router path="/timetable">
                 <Timetable />
             </Router>
-            <Router path="/profile">
-                <Profile />
+            <Router path="/subject">
+                <Subject />
             </Router>
         </Switch>
     );
