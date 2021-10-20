@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container-navbar{
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar{
+    width: 85%;
+    height: 60%;
+    background: rgba(216, 216, 216, 0.568);
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.text-navbar{
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.text-navbar span{
+    font-size: 1.8rem;
+    color: rgba(0, 0, 0, 0.671);
+}
+
+.choose-navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.choose-navbar .text-link{
+    width: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1.3px solid rgba(139, 139, 139, 0.363);
+    height: 100%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.671);
+}
+
+.choose-navbar .text-link:nth-child(3){
+    border-right: 2px solid rgba(139, 139, 139, 0.363);
+}
+
+.choose-navbar .text-link:hover{
+    color: rgba(139, 139, 139, 0.986);
+}
+
+.user-navbar{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    position: relative;
+}
+
+.user-navbar .name-user{
+    max-width: 18rem;
+    text-align: end;
+}
+
+.user-navbar .name-user span{
+    font-size: .9rem;
+}
+
+.user-navbar .img-user{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 20px;
+    background-size: cover;
+    margin: 0 .6rem;
+}
+
+.Logout{
+    display: none;
+}
+
+.Logout.active{
+    height: 100%;
+    width: 15%;
+    background: rgba(189, 9, 9, 0.87);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: block;
+}
+
+.logout{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout-box span{
+    color: rgba(228, 228, 228, 0.822);
+    font-size: 1rem;
+}

@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Bai Jamjuree', sans-serif;
+}
+
+.container-enroll{
+    margin-top: 1.7rem;
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.head-table{
+    height: 100%;
+    width: 90%;
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+
+.idsub, .namesub, .time, .sec, .room, .numstu, .teacher{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(228, 227, 227, 0.74);
+}
+
+.idsub-c, .namesub-c, .time-c, .sec-c, .room-c, .numstu-c, .teacher-c{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(240, 240, 240, 0.747);
+}
+
+.idsub span, .namesub span, .time span, .sec span, .room span, .numstu span, .teacher span{
+    font-size: 1.2rem;
+}
+
+.container-input{
+    width: 100%;
+    min-height: 65vh;
+}
+
+.sub-table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-table{
+    width: 90%;
+    height: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.delete-table{
+    width: 90%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-box{
+    width: 4.5rem;
+    height: 1.7rem;
+    background: rgba(189, 9, 9, 0.87);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.delete-box:hover{
+    background: rgba(189, 9, 9, 0.938);
+    transform: scale(1.1);
+}
+
+.delete-box span{
+    font-size: 1rem;
+    color: rgba(228, 228, 228, 0.822);
+}
+
+.idsub-input{
+    width: 90%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: .4rem;
+}
+
+.idsub-input input{
+    width: 8rem;
+    height: 1.6rem;
+    border-radius: 20px;
+    border: 1.5px solid rgb(180, 180, 180);;
+    outline: none;
+    padding: .4rem;
+}
+
+.btn-comfirm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: .5rem;
+    width: 6rem;
+    height: 1.7rem;
+    border-radius: 20px;
+    background: rgba(0, 155, 0, 0.925);
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.btn-comfirm:hover{
+    background: rgb(1, 145, 1);
+    transform: scale(1.1);
+}
+
+.btn-comfirm span{
+    color: rgba(228, 228, 228, 0.822);
+    font-size: .9rem;
+}
+
+.container-btn{
+    width: 100%;
+    height: fit-content;
+}
+
+.container-btn .line{
+    width: 90%;
+    border-top: 1px solid rgba(189, 189, 189, 0.705);
+    margin: 0 auto;
+}
+
+.btn-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    height: 1.7rem;
+    margin-top: 2rem;
+}
+
+.btn-submit{
+    background: rgba(0, 155, 0, 0.822);
+    padding: .8rem;
+    border-radius: 20px;
+    margin-right: 1.5rem;
+    cursor: pointer;
+    color: rgba(228, 228, 228, 0.822);
+    transform: scale(1);
+    transition: .5s;
+}
+
+.btn-submit:hover{
+    transform: scale(1.1);
+    background: rgb(1, 145, 1);
+}
+
+.btn-delete{
+    background: rgba(189, 9, 9, 0.87);
+    padding: .8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    color: rgba(228, 228, 228, 0.822);
+    transition: .5s;
+    transform: scale(1);
+}
+
+.btn-delete:hover{
+    transform: scale(1.1);
+    background: rgba(189, 9, 9, 0.938);
+}
+
+.container-confirm{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-confirm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(148, 148, 148, 0.801);
+    width: fit-content;
+    height: 1.5rem;
+    padding: 2rem 4rem;
+    border-radius: 10px;
+}
+
+.text-confirm span{
+    font-size: 2rem;
+    color: rgba(0, 0, 0, 0.753);
+    
+}
+
+.re-register{
+    margin-top: 2rem;
+    width: fit-content;
+    background: rgba(230, 162, 35, 0.822);
+    padding: 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transform: scale(1);
+    transition: .4s;
+}
+
+.re-register:hover{
+    background: rgb(230, 162, 35);
+    transform: scale(1.1);
+}
+
+.re-register span{
+    color: rgba(0, 0, 0, 0.753);
+}
