@@ -2,8 +2,8 @@ import './Subject.css'
 
 function Subject(){
     return(
-        <div>
-            asdad
+        <div className="container-subject">
+            
         </div>
     )
 }

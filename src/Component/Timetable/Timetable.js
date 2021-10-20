@@ -2,14 +2,13 @@ import './Timetable.css';
 import { auth } from '../../Database/firebase';
 import firestore from '../../Database/firebase';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 function Timetable(){
     const Register = firestore.collection('Register');
     const [table, setTable] = useState(null);
     const [sub, setSub] = useState('');
     const [name, setName] = useState('');
-    console.log(sub)
+    const [loading, setLoading] = useState(true);
 
     useEffect(() =>{
         auth.onAuthStateChanged((user) =>{
@@ -20,6 +19,7 @@ function Timetable(){
                 setTable(table);
                 setSub(sub);
                 setName(name);
+                setLoading(false);
             })
         })
     },[])
@@ -54,9 +54,9 @@ function Timetable(){
                 <div className="text-timetable">
                     <h1>คลิกเพื่อลงทะเบียนเรียน</h1>
                 </div>
-                <Link to="/enroll" className="btn-backtoregister">
+                <a href="/enroll" className="btn-backtoregister">
                     <span>ลงทะเบียนเรียน</span>
-                </Link>
+                </a>
             </div>
         ) }
         </>
