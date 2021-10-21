@@ -32,18 +32,32 @@ function Timetable(){
                     <h1>ตารางเรียน</h1>
                     <span>{name}</span>
                 </div>
+                <div className="Header-box">
+                    <div className="header">
+                        <div className="Id-sub"><span>รหัสวิชา</span></div>
+                        <div className="Name-sub"><span>ชื่อวิชา</span></div>
+                        <div className="Credit-sub"><span>หน่วยกิจ</span></div>
+                        <div className="Time-sub"><span>เวลาเรียน</span></div>
+                        <div className="Sec-sub"><span>Section</span></div>
+                        <div className="Room-sub"><span>ห้องเรียน</span></div>
+                        <div className="Teacher-sub"><span>อาจารย์</span></div>
+                    </div>
+                </div>
                 <div className="tablesub">
                     <div className="tablesub-box">
                         { sub && sub.map((data) =>{
                             return(
-                                <div className="Subject">
-                                    <div className="Id-sub">{data.Id}</div>
-                                    <div className="Name-sub">{data.Name}</div>
-                                    <div className="Time-sub">{data.Time}</div>
-                                    <div className="Sec-sub">{data.Sec}</div>
-                                    <div className="Room-sub">{data.Room}</div>
-                                    <div className="Teacher-sub">{data.Teacher}</div>
-                                </div>
+                                <>
+                                    <div className="Subject">
+                                        <div className="Id-sub-c"><span>{data.Id}</span></div>
+                                        <div className="Name-sub-c"><span>{data.Name}</span></div>
+                                        <div className="Credit-sub-c"><span>{data.Credit}</span></div>
+                                        <div className="Time-sub-c"><span>{data.Time}</span></div>
+                                        <div className="Sec-sub-c"><span>{data.Sec}</span></div>
+                                        <div className="Room-sub-c"><span>{data.Room}</span></div>
+                                        <div className="Teacher-sub-c"><span>{data.Teacher}</span></div>
+                                    </div>
+                                </>
                             )
                         }) }
                     </div>

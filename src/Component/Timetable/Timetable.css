@@ -31,9 +31,35 @@
 }
 
 .text-table span{
-    margin-top: .6rem;
+    margin-top: 1.5rem;
     font-size: 1.2rem;
 }
+
+.Header-box{
+    width: 75%;
+    height: fit-content;
+    padding: 0 1rem;
+    margin-top: 3rem;
+}
+
+.header{
+    padding: 0 .7rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.Id-sub, .Name-sub, .Time-sub, .Sec-sub, .Room-sub, .Teacher-sub, .Credit-sub{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Id-sub span, .Name-sub span, .Time-sub span, .Sec-sub span, .Room-sub span, .Teacher-sub span, .Credit-sub span{
+    font-size: 1.3rem;
+    color: #ff7f07;
+}
+
 
 .tablesub{
     margin-top: 1.5rem;
@@ -51,14 +77,18 @@
 
 .Subject{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     padding: .7rem;
 }
 
-.Id-sub, .Name-sub, .Time-sub, .Sec-sub, .Room-sub, .Teacher-sub{
+.Id-sub-c, .Name-sub-c, .Time-sub-c, .Sec-sub-c, .Room-sub-c, .Teacher-sub-c, .Credit-sub-c{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.Id-sub-c span, .Name-sub-c span, .Time-sub-c span, .Sec-sub-c span, .Room-sub-c span, .Teacher-sub-c span, .Credit-sub-c span{
+    font-size: 1.1rem;
 }
 
 .container-text-timetable{

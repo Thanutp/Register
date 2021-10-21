@@ -388,6 +388,7 @@ function Enroll(){
                     <div className="head-table">
                         <div className="idsub"><span>รหัสวิชา</span></div>
                         <div className="namesub"><span>ชื่อวิชา</span></div>
+                        <div className="credit"><span>หน่วยกิจ</span></div>
                         <div className="time"><span>เวลาเรียน</span></div>
                         <div className="sec"><span>Section</span></div>
                         <div className="room"><span>ห้องเรียน</span></div>
@@ -403,6 +404,7 @@ function Enroll(){
                                     <div className="table-table" key={index} onMouseOver={() => Deletesubject(data)}>
                                         <div className="idsub-c" key={index}><span>{data.Id}</span></div>
                                         <div className="namesub-c" ><span>{data.Name}</span></div>
+                                        <div className="credit-c"><span>{data.Credit}</span></div>
                                         <div className="time-c"><span>{data.Time}</span></div>
                                         <div className="sec-c"><span>{data.Sec}</span></div>
                                         <div className="room-c"><span>{data.Room}</span></div>
@@ -432,6 +434,7 @@ function Enroll(){
                                 <div className="table-table">
                                     <div className="idsub-c"><span>{Subject.Id}</span></div>
                                     <div className="namesub-c"><span>{Subject.Name}</span></div>
+                                    <div className="credit-c"><span>{Subject.Credit}</span></div>
                                     <div className="time-c">
                                         { sec == '' ? (<span>-</span>) : (Subject.Time) }
                                     </div>

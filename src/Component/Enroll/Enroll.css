@@ -21,11 +21,11 @@
     width: 90%;
     background: #fff;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
 }
 
 
-.idsub, .namesub, .time, .sec, .room, .numstu, .teacher{
+.idsub, .namesub, .time, .sec, .room, .numstu, .teacher, .credit{
     height: 100%;
     display: flex;
     align-items: center;
@@ -33,7 +33,7 @@
     background: rgba(228, 227, 227, 0.74);
 }
 
-.idsub-c, .namesub-c, .time-c, .sec-c, .room-c, .numstu-c, .teacher-c{
+.idsub-c, .namesub-c, .time-c, .sec-c, .room-c, .numstu-c, .teacher-c, .credit-c{
     height: 100%;
     display: flex;
     align-items: center;
@@ -41,7 +41,7 @@
     background: rgba(240, 240, 240, 0.747);
 }
 
-.idsub span, .namesub span, .time span, .sec span, .room span, .numstu span, .teacher span{
+.idsub span, .namesub span, .time span, .sec span, .room span, .numstu span, .teacher span, .credit span{
     font-size: 1.2rem;
 }
 
@@ -60,7 +60,7 @@
     width: 90%;
     height: 2.5rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .delete-table{
