@@ -246,8 +246,41 @@ function Enroll(){
                         const Credit = data.data().Credit;
                         let alldata = [...allSubject, Subject];
                         let credit = Credit + Subject.Credit;
-                        // setAllSubject(alldata);
-                        Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).get().then((res) =>{
+                        
+                        if(credit <= 19){
+                            Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).get().then((res) =>{
+                                const wait = res.data().waitfordel;
+                                if(wait.length != 0){
+                                    const check = wait.every((data) =>{
+                                        return data != Subject.Id;
+                                    })
+    
+                                    if(!check){
+                                        const New = wait.filter((data) =>{
+                                            return data != Subject.Id;
+                                        })
+                                        Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).set({ waitfordel : New })
+                                    }       
+                                }
+                            })
+                            Addsub.doc(user.uid).set({ Sub : alldata, Credit : credit }).then(() =>{
+                                console.log("Add Sub!!")
+                            }).then(() =>{
+                                if(Resub){
+                                    setResub(false)
+                                }else{
+                                    setResub(true)
+                                }
+                            })
+                        }else{
+                            alert('หน่วยกิตเกินจำนวนที่กำหนดเเล้ว!!')
+                        }
+                    }
+                }else{
+                    let alldata = [Subject]
+                    let credit = Subject.Credit;
+                    // setAllSubject(alldata)
+                    Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).get().then((res) =>{
                             const wait = res.data().waitfordel;
                             if(wait.length != 0){
                                 const check = wait.every((data) =>{
@@ -262,35 +295,6 @@ function Enroll(){
                                 }
                             }
                         })
-                        Addsub.doc(user.uid).set({ Sub : alldata, Credit : credit }).then(() =>{
-                            console.log("Add Sub!!")
-                        }).then(() =>{
-                            if(Resub){
-                                setResub(false)
-                            }else{
-                                setResub(true)
-                            }
-                        })
-                    }
-                }else{
-                    let alldata = [Subject]
-                    let credit = Subject.Credit;
-                    // setAllSubject(alldata)
-                    Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).get().then((res) =>{
-                        const wait = res.data().waitfordel;
-                        if(wait.length != 0){
-                            const check = wait.every((data) =>{
-                                return data != Subject.Id;
-                            })
-
-                            if(!check){
-                                const New = wait.filter((data) =>{
-                                    return data != Subject.Id;
-                                })
-                                Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).set({ waitfordel : New })
-                            }
-                        }
-                    })
                     Addsub.doc(user.uid).set({Sub : alldata, Credit : credit}).then(() =>{
                         console.log("Add Sub!")
                     }).then(() =>{
@@ -523,7 +527,7 @@ function Enroll(){
                                     <div className="time-c">
                                         { sec == '' ? (<span>-</span>) : (Subject.Time) }
                                     </div>
-                                    <div className="sec-c"><Select options={option} onChange={select} /></div>
+                                    <div className="sec-c"><Select options={option} onChange={select} placeholder="Sec" /></div>
                                     <div className="room-c">
                                         { sec == '' ? (<span>-</span>) : (Subject.Room) }
                                     </div>
@@ -550,7 +554,7 @@ function Enroll(){
                     <div className="Credit">
                         <div className="credit-box">
                             <div className="credit-text">
-                                <span>หน่วยกิจรวม</span>
+                                <span>หน่วยกิตรวม</span>
                             </div>
                             <div className="credit-num">
                                 <span style={credit >= 0 && credit <= 9 ? Green : credit >= 10 && credit <= 18 ? Yellow : Red }>{ credit ? credit : "0" }</span>
@@ -581,3 +585,42 @@ function Enroll(){
 }
 
 export default Enroll;
+
+
+// Addsub.doc(user.uid).get().then((data) =>{
+//     const credit = data.data().Credit;
+//     console.log(credit)
+
+//     if(credit >= 9){
+//         const Credit = data.data().Credit;
+//         let alldata = [...allSubject, Subject];
+//         let credit = Credit + Subject.Credit;
+//         // setAllSubject(alldata);
+//         Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).get().then((res) =>{
+//             const wait = res.data().waitfordel;
+//             if(wait.length != 0){
+//                 const check = wait.every((data) =>{
+//                     return data != Subject.Id;
+//                 })
+
+//                 if(!check){
+//                     const New = wait.filter((data) =>{
+//                         return data != Subject.Id;
+//                     })
+//                     Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).set({ waitfordel : New })
+//                 }       
+//             }
+//         })
+//         Addsub.doc(user.uid).set({ Sub : alldata, Credit : credit }).then(() =>{
+//             console.log("Add Sub!!")
+//         }).then(() =>{
+//             if(Resub){
+//                 setResub(false)
+//             }else{
+//                 setResub(true)
+//             }
+//         })
+//     }else{
+//         alert('หน่วยกิตเกินจำนวนที่กำหนดไว้!!')
+//     }
+// })
