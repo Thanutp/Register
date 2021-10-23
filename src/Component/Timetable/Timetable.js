@@ -9,6 +9,7 @@ function Timetable(){
     const [sub, setSub] = useState('');
     const [name, setName] = useState('');
     const [loading, setLoading] = useState(true);
+    console.log(loading)
 
     useEffect(() =>{
         auth.onAuthStateChanged((user) =>{

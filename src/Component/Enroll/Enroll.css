@@ -48,12 +48,57 @@
 .container-input{
     width: 100%;
     min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .sub-table{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.Credit{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .5rem;
+}
+
+.credit-box{
+    width: 9%;
+    padding: .7rem;
+    background: rgb(197, 195, 195);
+    border-radius: 20px;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.credit-text{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.credit-text span{
+    font-size: .9rem;
+}
+
+.credit-num{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.credit-num{
+    font-size: .9rem;
 }
 
 .table-table{

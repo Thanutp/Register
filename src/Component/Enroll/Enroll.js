@@ -18,6 +18,7 @@ function Enroll(){
     const [Subjectadd, setSubjectAdd] = useState('');
     const [inputvalue, setInputvalue] = useState('');
     const [allSubject, setAllSubject] = useState('');
+    const [credit, setCredit] = useState('');
     const [showSubject, setShowSubject] = useState('');
     const [deleteSub, setDeleteSub] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
@@ -31,6 +32,16 @@ function Enroll(){
         { label: '1', value: '1' },
         { label: '2', value: '2' }
     ]
+    const Green = {
+        color: 'green'
+    };
+    const Red = {
+        color: 'red'
+    };
+    const Yellow = {
+        color: '#F7FD04'
+    };
+    
 
     useEffect(() =>{
         auth.onAuthStateChanged((user) =>{
@@ -59,12 +70,14 @@ function Enroll(){
 
 
     useEffect(() =>{
-        auth.onAuthStateChanged((user) =>{
+        auth.onAuthStateChanged((user) =>{  
             Addsub.doc(user.uid).get().then((data) =>{
                 if(data.exists){
                     const subject = data.data().Sub;
+                    const credit = data.data().Credit.toString();
                     setShowSubject(subject)
                     setAllSubject(subject)
+                    setCredit(credit);
                     let allnum = [];
                     subject.forEach((data) =>{
                         Userinsub.doc(data.Sec).collection('user').doc(data.Id).get().then((res) =>{
@@ -83,8 +96,10 @@ function Enroll(){
             Addsub.doc(user.uid).get().then((data) =>{
                 if(data.exists){
                     const subject = data.data().Sub;
+                    const credit = data.data().Credit.toString();
                     setShowSubject(subject)
                     setAllSubject(subject)
+                    setCredit(credit)
                     let allnum = [];
                     subject.forEach((data) =>{
                         Userinsub.doc(data.Sec).collection('user').doc(data.Id).get().then((res) =>{
@@ -93,14 +108,14 @@ function Enroll(){
                             setNumofStu(allnum);
                         })
                     })
+                    
+                    if(subject == ''){
+                        setDeleteSub(false)
+                        setShowDelete(false)
+                    }
                 }
             })
         })
-
-        if(allSubject == ''){
-            setDeleteSub(false)
-            setShowDelete(false)
-        }
     }, [Resub])
 
     const addstu = () =>{
@@ -151,39 +166,45 @@ function Enroll(){
 
     const deleuser = async () =>{
         await Userinsub.doc('1').collection('del').doc(user.uid).get().then((data) =>{
-            const Wait = data.data().waitfordel;
-            if(Wait.length != 0){
-                Wait.forEach((data) =>{
-                    Userinsub.doc('1').collection('user').doc(data).get().then((res) =>{
-                        const student = res.data().Student;
-                        const newStudent = student.filter((data) =>{
-                            return data != user.uid;
+            if(data.exists){
+                const Wait = data.data().waitfordel;
+                if(Wait.length != 0){
+                    Wait.forEach((data) =>{
+                        Userinsub.doc('1').collection('user').doc(data).get().then((res) =>{
+                            const student = res.data().Student;
+                            const newStudent = student.filter((data) =>{
+                                return data != user.uid;
+                            })
+                            const num = newStudent.length;
+                            Userinsub.doc('1').collection('user').doc(data).update({ Student : newStudent, NumofStu : num })
                         })
-                        const num = newStudent.length;
-                        Userinsub.doc('1').collection('user').doc(data).update({ Student : newStudent, NumofStu : num })
                     })
-                })
+                    Userinsub.doc('1').collection('del').doc(user.uid).set({ waitfordel : [] })
+                }
+            }else{
+                Userinsub.doc('1').collection('del').doc(user.uid).set({ waitfordel : [] })
             }
-        }).then(() =>{
-            Userinsub.doc('1').collection('del').doc(user.uid).set({ waitfordel : [] })
         })
 
         await Userinsub.doc('2').collection('del').doc(user.uid).get().then((data) =>{
-            const Wait = data.data().waitfordel;
-            if(Wait.length != 0){
-                Wait.forEach((data) =>{
-                    Userinsub.doc('2').collection('user').doc(data).get().then((res) =>{
-                        const student = res.data().Student;
-                        const newStudent = student.filter((data) =>{
-                            return data != user.uid;
+            if(data.exists){
+                const Wait = data.data().waitfordel;
+                if(Wait.length != 0){
+                    Wait.forEach((data) =>{
+                        Userinsub.doc('2').collection('user').doc(data).get().then((res) =>{
+                            const student = res.data().Student;
+                            const newStudent = student.filter((data) =>{
+                                return data != user.uid;
+                            })
+                            const num = newStudent.length;
+                            Userinsub.doc('2').collection('user').doc(data).update({ Student : newStudent, NumofStu : num })
                         })
-                        const num = newStudent.length;
-                        Userinsub.doc('2').collection('user').doc(data).update({ Student : newStudent, NumofStu : num })
                     })
-                })
+                    Userinsub.doc('2').collection('del').doc(user.uid).set({ waitfordel : [] })
+                }
+            }else{
+                Userinsub.doc('2').collection('del').doc(user.uid).set({ waitfordel : [] })
             }
-        }).then(() =>{
-            Userinsub.doc('2').collection('del').doc(user.uid).set({ waitfordel : [] })
         })
     }
 
@@ -194,10 +215,25 @@ function Enroll(){
                     const subject = data.data().Sub;
                     
                     if(subject.length == 0){
-                        Subject.Sec = sec;
                         let alldata = [Subject];
-                        setAllSubject(alldata);
-                        Addsub.doc(user.uid).set({ Sub : alldata }).then(() =>{
+                        let credit = Subject.Credit;
+                        // setAllSubject(alldata);
+                        Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).get().then((res) =>{
+                            const wait = res.data().waitfordel;
+                            if(wait.length != 0){
+                                const check = wait.every((data) =>{
+                                    return data != Subject.Id;
+                                })
+
+                                if(!check){
+                                    const New = wait.filter((data) =>{
+                                        return data != Subject.Id;
+                                    })
+                                    Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).set({ waitfordel : New })
+                                }
+                            }
+                        })
+                        Addsub.doc(user.uid).set({ Sub : alldata, Credit : credit }).then(() =>{
                             console.log("Add Sub!");
                         }).then(() =>{
                             if(Resub){
@@ -207,10 +243,26 @@ function Enroll(){
                             }
                         })
                     }else{
-                        Subject.Sec = sec;
+                        const Credit = data.data().Credit;
                         let alldata = [...allSubject, Subject];
-                        setAllSubject(alldata);
-                        Addsub.doc(user.uid).set({ Sub : alldata }).then(() =>{
+                        let credit = Credit + Subject.Credit;
+                        // setAllSubject(alldata);
+                        Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).get().then((res) =>{
+                            const wait = res.data().waitfordel;
+                            if(wait.length != 0){
+                                const check = wait.every((data) =>{
+                                    return data != Subject.Id;
+                                })
+
+                                if(!check){
+                                    const New = wait.filter((data) =>{
+                                        return data != Subject.Id;
+                                    })
+                                    Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).set({ waitfordel : New })
+                                }
+                            }
+                        })
+                        Addsub.doc(user.uid).set({ Sub : alldata, Credit : credit }).then(() =>{
                             console.log("Add Sub!!")
                         }).then(() =>{
                             if(Resub){
@@ -222,8 +274,24 @@ function Enroll(){
                     }
                 }else{
                     let alldata = [Subject]
-                    setAllSubject(alldata)
-                    Addsub.doc(user.uid).set({Sub : alldata}).then(() =>{
+                    let credit = Subject.Credit;
+                    // setAllSubject(alldata)
+                    Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).get().then((res) =>{
+                        const wait = res.data().waitfordel;
+                        if(wait.length != 0){
+                            const check = wait.every((data) =>{
+                                return data != Subject.Id;
+                            })
+
+                            if(!check){
+                                const New = wait.filter((data) =>{
+                                    return data != Subject.Id;
+                                })
+                                Userinsub.doc(Subject.Sec).collection('del').doc(user.uid).set({ waitfordel : New })
+                            }
+                        }
+                    })
+                    Addsub.doc(user.uid).set({Sub : alldata, Credit : credit}).then(() =>{
                         console.log("Add Sub!")
                     }).then(() =>{
                         if(Resub){
@@ -247,11 +315,28 @@ function Enroll(){
         if(value != ''){
             if(value.length >= 4){
                 Idsub.doc('Subject').get().then((res) =>{
-                    const check = allSubject.every((data) =>{
-                        return data.Id != value;
-                    })
-
-                    if(check){
+                    if(allSubject != ''){
+                        const check = allSubject.every((data) =>{
+                            return data.Id != value;
+                        })
+    
+                        if(check){
+                            if(res.exists){
+                                setSubjectAdd('');
+                                setSec('');
+                                const id = res.data()
+                                setSubject(id[value])
+                                if(Renum == true){
+                                    setRenum(false)
+                                }else{
+                                    setRenum(true)
+                                }
+                            }
+                        }else{
+                            alert("วิชานี้ถูกลงทะเบียนเรียนเรียบร้อยเเล้ว")
+                            setInputvalue('')
+                        }
+                    }else{
                         if(res.exists){
                             setSubjectAdd('');
                             setSec('');
@@ -263,9 +348,6 @@ function Enroll(){
                                 setRenum(true)
                             }
                         }
-                    }else{
-                        alert("วิชานี้ถูกลงทะเบียนเรียนเรียบร้อยเเล้ว")
-                        setInputvalue('')
                     }
                 })
             }
@@ -276,14 +358,17 @@ function Enroll(){
 
     const Deletesub = async(data) =>{
         const Sec = data.Sec;
+        const Credit = data.Credit;
         const Id = data.Id;
         Addsub.doc(user.uid).get().then((result) =>{
             const resu = result.data().Sub
+            const credit = result.data().Credit;
+            const newCredit = credit - Credit;
             const re = resu.filter((data) =>{
                 return data.Id != Id;
             })
-            setAllSubject(re)
-            Addsub.doc(user.uid).update({ Sub : re }).then(() =>{
+            // setAllSubject(re)
+            Addsub.doc(user.uid).update({ Sub : re , Credit : newCredit}).then(() =>{
                 console.log("Delete Subject!!")
             }).then(() =>{
                 if(Resub){
@@ -344,7 +429,7 @@ function Enroll(){
 
     const Submitenroll = () =>{
         if(allSubject != ''){
-            Register.doc(user.uid).update({ Tablesub : true, register : false, subjectregis : allSubject , Username : user.displayName, UserId : user.uid}).then(() =>{
+            Register.doc(user.uid).set({ Tablesub : true, register : false, subjectregis : allSubject , Username : user.displayName, UserId : user.uid}).then(() =>{
                 console.log("Register!!")
             })
             addstu();
@@ -461,6 +546,16 @@ function Enroll(){
                                 <div className="btn-comfirm" onClick={() => Confirmsub()}><span>ลงทะเบียน</span></div>
                             </>
                         ) }
+                    </div>
+                    <div className="Credit">
+                        <div className="credit-box">
+                            <div className="credit-text">
+                                <span>หน่วยกิจรวม</span>
+                            </div>
+                            <div className="credit-num">
+                                <span style={credit >= 0 && credit <= 9 ? Green : credit >= 10 && credit <= 18 ? Yellow : Red }>{ credit ? credit : "0" }</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="container-btn">

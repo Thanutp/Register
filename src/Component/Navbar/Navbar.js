@@ -7,7 +7,6 @@ function Navbar({Logout}){
     const location = useLocation();
     const [user, setUser] = useState('');
     const [logout, setLogout] = useState(false);
-    console.log(logout)
 
     useEffect(() =>{
         auth.onAuthStateChanged((user) =>{
