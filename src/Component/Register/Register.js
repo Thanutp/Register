@@ -7,6 +7,7 @@ import { auth } from '../../Database/firebase';
 function Register(){
     const Users = firestore.collection('Users');
     const [message, setMessage] = useState('');
+    const [errMessage, setErrMessage] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [ChPassword, setChPassword] = useState('');
@@ -16,7 +17,7 @@ function Register(){
             auth
             .createUserWithEmailAndPassword(email, password).then( async(res) =>{
                 if(res){
-                    setMessage('Success!!')
+                    setMessage('สมัครสำเร็จ!!')
                     Users.doc(res.user.uid).get().then((data) =>{
                         if(!data.exists){
                             Users.doc(res.user.uid).set({
@@ -35,7 +36,7 @@ function Register(){
             setPassword('');
             setEmail('');
         }else{
-            alert('รหัสผ่านไม่ตรงกัน')
+            setErrMessage('รหัสผ่านไม่ตรงกัน')
             setPassword('');
             setChPassword('');
         }
@@ -60,6 +61,16 @@ function Register(){
                     <input type="password" name="ChPassword" value={ChPassword} onChange={(e) => setChPassword(e.target.value)}/>
                 </div>
                 <div className="buttonElem-re">
+                    { message ? (
+                        <>
+                        <div className="Success"><span>{message}</span></div>
+                        </>
+                    ) : null }
+                    { errMessage ? (
+                        <>
+                        <div className="Error"><span>{errMessage}</span></div>
+                        </>
+                    ) : null }
                     <div className="btn-register" onClick={RegisterHandle}>Register</div>
                     <Link className="loginlink" to="/">Back To Login</Link>
                 </div>

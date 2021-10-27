@@ -5,8 +5,11 @@
 }
 
 .container-register{
-    width: 35rem;
-    height: 33rem;
+    padding: 1.5rem 0;
+    min-width: 35rem;
+    min-height: 33rem;
+    display: flex;
+    align-items: center;
     top: 50%;
     left: 50%;
     transform: translate( -50%, -50%);
@@ -16,8 +19,8 @@
 }
 
 .Register{
+    margin-bottom: .5rem;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -88,4 +91,36 @@
     text-decoration: none;
     color: #000;
     text-align: center;
+}
+
+.Success{
+    margin: .7rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 20px;
+    background:rgba(20, 209, 20, 0.5);
+    border: 2px solid rgba(20, 209, 20, 0.863);
+}
+
+.Success span{
+    color: rgb(4, 126, 4);
+    font-size: 1rem;
+}
+
+.Error{
+    margin: .7rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 20px;
+    background:rgba(189, 9, 9, 0.5);;
+    border: 2px solid rgba(189, 9, 9, 0.349);
+}
+
+.Error span{
+    color: rgb(153, 8, 8);;
+    font-size: 1rem;
 }

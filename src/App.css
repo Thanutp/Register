@@ -3,8 +3,11 @@
 }
 
 .container-login{
-    width: 35rem;
-    height: 33rem;
+    padding: 1.5rem 0;
+    min-width: 35rem;
+    min-height: 33rem;
+    display: flex;
+    align-items: center;
     top: 50%;
     left: 50%;
     transform: translate( -50%, -50%);
@@ -14,8 +17,8 @@
 }
 
 .Login{
+    margin-bottom: .5rem;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -133,4 +136,20 @@
     display: flex;
     align-items: center;
     padding-left: .5rem;
+}
+
+.error{
+    margin: .7rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 20px;
+    background:rgba(189, 9, 9, 0.5);;
+    border: 2px solid rgba(189, 9, 9, 0.349);
+}
+
+.error span{
+    color: rgb(153, 8, 8);;
+    font-size: 1rem;
 }

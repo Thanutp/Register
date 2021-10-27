@@ -13,6 +13,7 @@ function App() {
   const [userLoginState,setUserLoginState] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const User = firestore.collection('Users');
   console.log(userLoginState)
   
@@ -48,7 +49,13 @@ function App() {
           setUserLoginState(sessionStorage.getItem('Auth'))
           console.log('Login Success!!')
             }).catch((err) =>{
-              console.log(err)
+              if(email == '' && password == '' ){
+                setMessage('กรุณาใส่ email เเละ password เพื่อ login');
+              }else if(email != '' && password == ''){
+                setMessage('กรุณาใส่ password เพื่อ login');
+              }else if(email == '' && password != ''){
+                setMessage('กรุณาใส่ email เพื่อ login');
+              }
             })
     }
 
@@ -59,6 +66,12 @@ function App() {
         window.location.href = '/';  
         console.log('Logout!!')
       })
+    }
+
+    const Clearmessage = () =>{
+      setMessage('');
+      setEmail('');
+      setPassword('');
     }
 
   return (
@@ -73,15 +86,20 @@ function App() {
                 </div>
                 <div className="email">
                     <p>Email</p>
-                    <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} onClick={() => setMessage('')}/>
                 </div>
                 <div className="password">
                     <p>Password</p>
-                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} onClick={() => setMessage('')}/>
                 </div>
+                { message ? (
+                      <>
+                      <div className="error"><span>{message}</span></div>
+                      </>
+                ) : null }
                 <div className="buttonElem">
                     <div className="btn-login" onClick={LoginHandler}>Login</div>
-                    <Link className="registerlink" to="/register">Register</Link>
+                    <Link className="registerlink" to="/register" onClick={Clearmessage} >Register</Link>
                 <div className="btn-google" onClick={LoginGoogle} >
                     <img src={icon} />
                     <p>LoginWithGoogle</p>
