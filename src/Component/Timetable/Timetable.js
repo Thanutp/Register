@@ -2,24 +2,35 @@ import './Timetable.css';
 import { auth } from '../../Database/firebase';
 import firestore from '../../Database/firebase';
 import { useEffect, useState } from 'react';
+import Loading from '../Loading/Loading';
 
 function Timetable(){
     const Register = firestore.collection('Register');
+    const Users = firestore.collection('Users');
     const [table, setTable] = useState(null);
     const [sub, setSub] = useState('');
     const [name, setName] = useState('');
     const [loading, setLoading] = useState(true);
+    console.log(loading)
 
     useEffect(() =>{
+        setLoading(true)
         auth.onAuthStateChanged((user) =>{
             const name = user.displayName;
             Register.doc(user.uid).get().then((result) =>{
-                const table = result.data().Tablesub;
-                const sub = result.data().subjectregis;
-                setTable(table);
-                setSub(sub);
-                setName(name);
-                setLoading(false);
+                if(result.exists){
+                    const table = result.data().Tablesub;
+                    const sub = result.data().subjectregis;
+                    setTable(table);
+                    setSub(sub);
+                    setName(name);
+                    setLoading(false);
+                }else{
+                    Users.doc(user.uid).get().then((res) =>{
+                        const Name = res.data().Name;
+                        Register.doc(user.uid).set({ Tablesub : false, UserId : user.uid, Username : Name, register : true })
+                    })
+                }
             })
         })
     },[])
@@ -27,11 +38,15 @@ function Timetable(){
     return(
         <>
         { table == true ? (
-            <div className="container-timetable">
-                <div className="text-table">
-                    <h1>ตารางเรียน</h1>
-                    <span>{name}</span>
-                </div>
+            <>
+            { loading == true ? (
+                <Loading />
+            ) : (
+                <div className="container-timetable">
+                    <div className="text-table">
+                        <h1>ตารางเรียน</h1>
+                        <span>{name}</span>
+                    </div>
                 <div className="Header-box">
                     <div className="header">
                         <div className="Id-sub"><span>รหัสวิชา</span></div>
@@ -63,6 +78,8 @@ function Timetable(){
                     </div>
                 </div>
             </div>
+            ) }
+            </>
         ) : (
             <div className="container-text-timetable">
                 <div className="text-timetable">
@@ -78,3 +95,4 @@ function Timetable(){
 }
 
 export default Timetable;
+

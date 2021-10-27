@@ -433,7 +433,8 @@ function Enroll(){
 
     const Submitenroll = () =>{
         if(allSubject != ''){
-            Register.doc(user.uid).set({ Tablesub : true, register : false, subjectregis : allSubject , Username : user.displayName, UserId : user.uid}).then(() =>{
+            const cre = parseInt(credit)
+            Register.doc(user.uid).set({ Tablesub : true, register : false, subjectregis : allSubject , Username : user.displayName, UserId : user.uid, Credit : cre}).then(() =>{
                 console.log("Register!!")
             })
             addstu();
