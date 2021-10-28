@@ -55,6 +55,8 @@ function App() {
                 setMessage('กรุณาใส่ password เพื่อ login');
               }else if(email == '' && password != ''){
                 setMessage('กรุณาใส่ email เพื่อ login');
+              }else{
+                console.log(err)
               }
             })
     }

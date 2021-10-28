@@ -11,14 +11,14 @@ function Timetable(){
     const [sub, setSub] = useState('');
     const [name, setName] = useState('');
     const [loading, setLoading] = useState(true);
-    console.log(loading)
+    console.log(name)
 
     useEffect(() =>{
         setLoading(true)
         auth.onAuthStateChanged((user) =>{
-            const name = user.displayName;
             Register.doc(user.uid).get().then((result) =>{
                 if(result.exists){
+                    const name = result.data().Username;
                     const table = result.data().Tablesub;
                     const sub = result.data().subjectregis;
                     setTable(table);
