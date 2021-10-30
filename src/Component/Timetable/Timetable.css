@@ -8,7 +8,7 @@
 }
 
 .container-timetable{
-    margin-top: 1.7rem;
+    margin: 1.7rem 0;
     width: 100%;
     height: fit-content;
     display: flex;
@@ -131,4 +131,13 @@
 .btn-backtoregister:hover{
     background: rgb(1, 145, 1);
     transform: scale(1.1);
+}
+
+.pic{
+    margin-top: 1rem;
+    width: 7rem;
+    height: 7rem;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
 }

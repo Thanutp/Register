@@ -57,6 +57,17 @@
     padding-bottom: .5rem;
 }
 
+.hint{
+    display: flex;
+    align-items: center;
+}
+
+.hint span{
+    position: relative;
+    left: .6rem;
+    cursor: pointer;
+}
+
 .email-re input, .password-re input, .ch-password-re input{
     width: 16rem;
     height: 1.9rem;

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import firestore from '../../Database/firebase';
 import { auth } from '../../Database/firebase';
 import emailjs from 'emailjs-com';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 function Register(){
     const Users = firestore.collection('Users');
@@ -17,6 +19,17 @@ function Register(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [ChPassword, setChPassword] = useState('');
+
+    const passwordhint = () =>{
+        return (
+            <>
+                <h1 style={{ fontSize : '1rem' , textAlign : 'center' , color : '#FFD31D' }}>- Password Hint -</h1>
+                <p style={{ fontSize : '.8rem' , textAlign : 'center' , color : '#FFD31D'}}>1.ต้องมีความยาว 6 ตัวขึ้นไป</p>
+                <p style={{ fontSize : '.8rem' , textAlign : 'center' , color : '#FFD31D'}}>2.ต้องมีตัวเลขอย่างน้อย 1 ตัว</p>
+                <p style={{ fontSize : '.8rem' , textAlign : 'center' , color : '#FFD31D'}}>3.ต้องมีตัวอักษรอย่างน้อง 1 ตัว</p>
+            </>
+        )
+    }
 
     const validate = () =>{
         const re = {
@@ -81,13 +94,13 @@ function Register(){
     }
 
     const Clearmessage = () =>{
-        setMessage('');
-        setErrMes1('');
-        setErrMes2('');
-        setErrMes3('');
-        setErrMes4('');
-        setErrMes5('');
-        setErrMes6('');
+        setMessage(null);
+        setErrMes1(null);
+        setErrMes2(null);
+        setErrMes3(null);
+        setErrMes4(null);
+        setErrMes5(null);
+        setErrMes6(null);
     }
     
     return(
@@ -112,7 +125,12 @@ function Register(){
                         ) : null }
                     </div>
                     <div className="password-re">
-                        <p>Password</p>
+                        <div className="hint">
+                            <p>Password</p>
+                            <Tippy content={passwordhint()}>
+                                <span>*</span>
+                            </Tippy>
+                        </div>
                         <input type="password" name="password" value={password} onChange={(e) =>  setPassword(e.target.value)} onClick={Clearmessage}/>
                         { errMes1 == false ? (
                             <div className="Error">
@@ -149,7 +167,7 @@ function Register(){
                     <div className="btn-register" onClick={RegisterHandle}>Register</div>
                     <Link className="loginlink" to="/">Back To Login</Link>
                 </div>
-            </div>    
+            </div>   
         </div>
     )
 }

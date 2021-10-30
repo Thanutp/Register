@@ -10,12 +10,19 @@ function Timetable(){
     const [table, setTable] = useState(null);
     const [sub, setSub] = useState('');
     const [name, setName] = useState('');
+    const [pic, setPic] = useState('');
     const [loading, setLoading] = useState(true);
-    console.log(name)
 
     useEffect(() =>{
         setLoading(true)
         auth.onAuthStateChanged((user) =>{
+            Users.doc(user.uid).get().then((data) =>{
+                if(data.data().Photo.default == undefined){
+                    setPic(data.data().Photo);
+                }else{
+                    setPic(data.data().Photo.default);
+                }
+            })
             Register.doc(user.uid).get().then((result) =>{
                 if(result.exists){
                     const name = result.data().Username;
@@ -45,6 +52,7 @@ function Timetable(){
                 <div className="container-timetable">
                     <div className="text-table">
                         <h1>ตารางเรียน</h1>
+                        <div className="pic" style={{ backgroundImage : `url(${pic})` }}></div>
                         <span>{name}</span>
                     </div>
                 <div className="Header-box">
