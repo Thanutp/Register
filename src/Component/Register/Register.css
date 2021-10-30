@@ -110,17 +110,13 @@
 }
 
 .Error{
-    margin: .7rem 0;
+    margin: .5rem 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    border-radius: 20px;
-    background:rgba(189, 9, 9, 0.5);;
-    border: 2px solid rgba(189, 9, 9, 0.349);
 }
 
 .Error span{
     color: rgb(153, 8, 8);;
-    font-size: 1rem;
+    font-size: .8rem;
 }

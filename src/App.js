@@ -14,6 +14,8 @@ function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [message1, setMessage1] = useState('');
+  const [message2, setMessage2] = useState('');
   const User = firestore.collection('Users');
   console.log(userLoginState)
   
@@ -38,6 +40,8 @@ function App() {
       User.doc(result.user.uid).set(user).then(() =>{
         console.log('Add!!')
       })
+    }).catch((err) =>{
+      console.log(err)
     })
   }
 
@@ -49,18 +53,29 @@ function App() {
           setUserLoginState(sessionStorage.getItem('Auth'))
           console.log('Login Success!!')
             }).catch((err) =>{
-              if(email == '' && password == '' ){
-                setMessage('กรุณาใส่ email เเละ password เพื่อ login');
-              }else if(email != '' && password == ''){
-                setMessage('กรุณาใส่ password เพื่อ login');
-              }else if(email == '' && password != ''){
-                setMessage('กรุณาใส่ email เพื่อ login');
-              }else{
-                console.log(err)
+              switch(err.code){
+                case "auth/invalid-email":
+                  if(password != ''){
+                    setMessage1('กรุณาใส่ email เพื่อ login')
+                  }else{
+                    setMessage('กรุณาใส่ email เเละ password เพื่อ login')
+                  }
+                  break;
+                case "auth/internal-error":
+                  setMessage2('กรุณาใส่ password เพื่อ login');
+                  break;
+                case "auth/user-not-found":
+                  setMessage('ไม่พบผู้ใช้งาน');
+                  break;
+                case "auth/wrong-password":
+                  setMessage2('Password ไม่ถูกต้อง');
+                  break;
+                default:
+                  setMessage('เป็นไรไม่รุอะเตง');
               }
             })
     }
-
+    
     const Logout = () =>{
       auth.signOut().then(() =>{
         sessionStorage.removeItem('Auth')
@@ -70,10 +85,15 @@ function App() {
       })
     }
 
-    const Clearmessage = () =>{
-      setMessage('');
+    const Clearinput = () =>{
       setEmail('');
       setPassword('');
+    }
+
+    const clearerr = () =>{
+      setMessage('');
+      setMessage1('');
+      setMessage2('');
     }
 
   return (
@@ -88,11 +108,21 @@ function App() {
                 </div>
                 <div className="email">
                     <p>Email</p>
-                    <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} onClick={() => setMessage('')}/>
+                    <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} onClick={clearerr}/>
+                    { message1 ? (
+                      <>
+                        <div className="error"><span>{message1}</span></div>
+                      </>
+                    ) : null }
                 </div>
                 <div className="password">
                     <p>Password</p>
-                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} onClick={() => setMessage('')}/>
+                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} onClick={clearerr}/>
+                    { message2 ? (
+                      <>
+                        <div className="error"><span>{message2}</span></div>
+                      </>
+                    ) : null }
                 </div>
                 { message ? (
                       <>
@@ -101,7 +131,7 @@ function App() {
                 ) : null }
                 <div className="buttonElem">
                     <div className="btn-login" onClick={LoginHandler}>Login</div>
-                    <Link className="registerlink" to="/register" onClick={Clearmessage} >Register</Link>
+                    <Link className="registerlink" to="/register" onClick={Clearinput} >Register</Link>
                 <div className="btn-google" onClick={LoginGoogle} >
                     <img src={icon} />
                     <p>LoginWithGoogle</p>
