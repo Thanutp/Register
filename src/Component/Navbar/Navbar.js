@@ -10,6 +10,7 @@ function Navbar({Logout}){
     const [user, setUser] = useState('');
     const [img, setImg] = useState(null);
     const [logout, setLogout] = useState(false);
+    console.log(user.Photo)
 
     useEffect(() =>{
         auth.onAuthStateChanged((user) =>{
@@ -41,7 +42,7 @@ function Navbar({Logout}){
                 <div className="user-navbar" onMouseOver={() => setLogout(true)} onMouseLeave={() => setLogout(false)}>
                     <div className="name-user"><span>{ user ? user.Name : null }</span></div>
                     <div className="img-user" style={ img != undefined ? { backgroundImage : `url(${img})` } : { backgroundImage : `url(${user.Photo})` } }></div>
-                    <div className={ logout == true ? 'Logout active' : 'Logout' }>
+                    <div className={ logout == true ? 'Logout active' : 'Logout' } onClick={() => Logout()}>
                         <div className="logout" onClick={() => Logout()}>
                             <div className="logout-box"><span>Logout</span></div>
                         </div>

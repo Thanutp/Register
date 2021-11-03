@@ -70,6 +70,8 @@
 }
 
 .user-navbar .name-user{
+    display: flex;
+    align-items: center;
     max-width: 18rem;
     text-align: end;
 }
@@ -111,4 +113,80 @@
 .logout-box span{
     color: rgba(228, 228, 228, 0.822);
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 1366px) and (min-width: 1045px){
+    .container-navbar{
+        margin-top: 1rem;
+        height: 5rem;
+    }
+
+    .text-navbar{
+        margin-left: 1.5rem;
+    }
+
+    .text-navbar span{
+        font-size: 1.3rem;
+        color: rgba(0, 0, 0, 0.671);
+    }
+
+    .choose-navbar .text-link{
+        width: 6.5rem;
+        border-left: 1px solid rgba(139, 139, 139, 0.363);
+        font-size: .8rem;
+    }
+
+    .choose-navbar .text-link:nth-child(3){
+        border-right: 1px solid rgba(139, 139, 139, 0.363);
+    }    
+
+    .user-navbar .name-user{
+        max-width: 15rem;
+    }
+
+    .user-navbar .name-user span{
+        font-size: .7rem;
+    }
+
+    .user-navbar .img-user{
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 20px;
+        background-size: cover;
+        background-position: center;
+        margin: 0 .4rem;
+    }
+
+    .Logout.active{
+        width: 13%;
+    }
+
+    .logout-box span{
+        font-size: .7rem;
+    }
+}
+
+@media screen and (max-width: 1044px){
+    .container-navbar{
+        margin-top: 1.3rem;
+        height: 4rem;
+    }
+    
+    .text-navbar{
+        margin-left: 1.2rem;
+    }
+
+    .text-navbar span{
+        font-size: 1rem;
+    }
+
+    .choose-navbar .text-link{
+        width: 5rem;
+        border-left: .7px solid rgba(139, 139, 139, 0.363);
+        font-size: .65rem;
+    }
 }

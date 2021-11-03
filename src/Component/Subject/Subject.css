@@ -56,3 +56,31 @@
 .sub-Id span, .sub-Name span, .sub-Credit span, .sub-Time span, .sub-Room span, .sub-Teacher span{
     font-size: 1rem;
 }
+
+@media screen and (max-width: 1366px) and (min-width: 1024px){
+    .container-subject{
+        margin-top: 1.2rem;
+    }
+
+    .text-subject h1{
+        font-size: 2.5rem;
+    }
+
+    .Selectsec{
+        margin-top: .8rem;
+    }
+
+    .listsub{
+        width: 73%;
+        margin-top: 1.5rem;
+        padding: .5rem;
+    }
+
+    .sub{
+        padding: .7rem;
+    }
+
+    .sub-Id span, .sub-Name span, .sub-Credit span, .sub-Time span, .sub-Room span, .sub-Teacher span{
+        font-size: .85rem;
+    }
+}
